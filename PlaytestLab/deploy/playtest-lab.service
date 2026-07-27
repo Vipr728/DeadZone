@@ -1,5 +1,5 @@
 [Unit]
-Description=RYZ Playtest Lab localhost service
+Description=DeadZone AI Level QA localhost demo
 After=network-online.target
 Wants=network-online.target
 
