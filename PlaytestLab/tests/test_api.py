@@ -9,6 +9,7 @@ os.environ.pop("PLAYTEST_LAB_OPERATOR_TOKEN", None)
 from fastapi.testclient import TestClient
 
 from playtest_lab.main import app
+import playtest_lab.main as main_module
 
 
 client = TestClient(app)
@@ -52,3 +53,26 @@ def test_rejects_gb10_for_ark_topdown():
         json={"domain": "ark_topdown", "engine": "gb10_proxy"},
     )
     assert response.status_code == 422
+
+
+def test_chat_calls_qwen_with_selected_run(monkeypatch):
+    monkeypatch.setattr(
+        main_module,
+        "answer_question",
+        lambda question, **kwargs: {
+            "answer": f"Qwen answered: {question}",
+            "model": "qwen3.6-35b-a3b",
+            "mode": "nemoclaw",
+            "prompt_sha256": "abc",
+        },
+    )
+    response = client.post(
+        "/api/v1/chat",
+        json={
+            "question": "Compare the checkpoints.",
+            "model_ids": ["gb10-ppo-seed42-step14978"],
+        },
+    )
+    assert response.status_code == 200
+    assert response.json()["answer"] == "Qwen answered: Compare the checkpoints."
+    assert response.json()["model"] == "qwen3.6-35b-a3b"

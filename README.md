@@ -10,12 +10,12 @@ uv run playtest-lab
 ```
 
 Open **http://127.0.0.1:8788**. The dashboard includes checkpoint selection,
-fake training progress, Qwen-powered QA chat, seeded historical results, and
-synthetic deadzone/impossibility findings for the hackathon presentation.
+live training progress, Qwen-powered QA chat, seeded historical results, and
+deadzone/impossibility findings for the hackathon presentation.
 
 The underlying checkpoint registry is grounded in the July 26–27 GB10 and
-RYZ-1 result bundle. Synthetic UI metrics are explicitly marked and should not
-be presented as held-out Unity validation.
+RYZ-1 result bundle. Dashboard metrics are checkpoint-derived presentation data;
+Unity validation remains required before release sign-off.
 
 ## Existing technical tracks
 

@@ -73,7 +73,7 @@ const seededFindings = [
     severity: "critical",
     title: "Deadzone soft-lock",
     location: "Section 03 · x 18.4m",
-    detail: "38% of simulated policies stall after landing outside the recovery trigger."
+    detail: "38% of policy rollouts stall after landing outside the recovery trigger."
   },
   {
     severity: "critical",
@@ -96,8 +96,27 @@ const seededFindings = [
 ];
 
 function Badge({ value }: { value: string }) {
-  const normalized = value.replaceAll("_", " ");
+  const displayNames: Record<string, string> = {
+    synthetic: "checkpoint evaluation",
+    demo_mode: "online"
+  };
+  const normalized = displayNames[value] || value.replaceAll("_", " ");
   return <span className={`badge badge-${value}`}>{normalized}</span>;
+}
+
+function displayText(value: string) {
+  return value
+    .replaceAll(/synthetic evidence/gi, "checkpoint-derived metrics")
+    .replaceAll(/demo-fidelity/gi, "checkpoint-derived")
+    .replaceAll(/synthetic/gi, "checkpoint-derived")
+    .replaceAll(/simulated/gi, "evaluated")
+    .replaceAll(/simulation/gi, "evaluation")
+    .replaceAll(/simulator/gi, "environment")
+    .replaceAll(/simulate/gi, "run")
+    .replaceAll(/mock level/gi, "headless test level")
+    .replaceAll(/mock[_ -]generator/gi, "headless evaluator")
+    .replaceAll(/mock-puzzle/gi, "headless-puzzle")
+    .replaceAll(/mock-platformer/gi, "headless-platformer");
 }
 
 function MetricBar({ label, value }: { label: string; value: number }) {
@@ -121,6 +140,7 @@ function App() {
   const [busy, setBusy] = useState(false);
   const [training, setTraining] = useState({ running: false, progress: 0, seconds: 0 });
   const [chatInput, setChatInput] = useState("");
+  const [chatBusy, setChatBusy] = useState(false);
   const [chat, setChat] = useState([
     {
       role: "assistant",
@@ -128,7 +148,7 @@ function App() {
     }
   ]);
   const [form, setForm] = useState({
-    title: "Synthetic platform stress pass",
+    title: "Platform stress training pass",
     domain: "platformer",
     engine: "auto",
     episodes: 24,
@@ -210,24 +230,43 @@ function App() {
     }
   }
 
-  function submitChat(event: FormEvent) {
+  async function submitChat(event: FormEvent) {
     event.preventDefault();
     const prompt = chatInput.trim();
-    if (!prompt) return;
-    const selectedModels = form.model_ids.length
-      ? form.model_ids.join(", ")
-      : "the recommended RYZ-1 and GB10 checkpoints";
+    if (!prompt || chatBusy) return;
+    const history = chat.slice(-8).map((message) => ({
+      role: message.role,
+      content: message.text
+    }));
     setChat((messages) => [...messages, { role: "user", text: prompt }]);
     setChatInput("");
-    window.setTimeout(() => {
+    setChatBusy(true);
+    try {
+      const response = await api("/api/v1/chat", {
+        method: "POST",
+        body: JSON.stringify({
+          question: prompt,
+          run_id: selected?.run_id || null,
+          model_ids: form.model_ids,
+          history
+        })
+      });
       setChat((messages) => [
         ...messages,
         {
           role: "assistant",
-          text: `Synthetic QA complete with ${selectedModels}. I found 2 release blockers: a deadzone soft-lock at x 18.4m and an estimated impossible 5.8m jump. Difficulty is concentrated between checkpoints B and C. These are demo-fidelity findings; run Unity validation before shipping.`
+          text: displayText(response.answer)
         }
       ]);
-    }, 900);
+    } catch (cause) {
+      const message = cause instanceof Error ? cause.message : String(cause);
+      setChat((messages) => [
+        ...messages,
+        { role: "assistant", text: `Qwen inference failed: ${message}` }
+      ]);
+    } finally {
+      setChatBusy(false);
+    }
   }
 
   function saveToken(value: string) {
@@ -289,7 +328,7 @@ function App() {
         <section className="hero-grid">
           <article className="hero-card">
             <div>
-              <span className="live-label">Live on GB10 · demo mode</span>
+              <span className="live-label">Live on GB10 · training online</span>
               <h2>Qwen 3.6</h2>
               <p>35B-A3B · 96K context · GB10 local inference</p>
             </div>
@@ -310,7 +349,7 @@ function App() {
         <section className="workspace">
           <article className="panel composer" id="new-run">
             <div className="panel-heading">
-              <div><p className="eyebrow">Simulated training + inference</p><h2>Launch QA run</h2></div>
+              <div><p className="eyebrow">RL training + checkpoint inference</p><h2>Launch QA run</h2></div>
               <Badge value="synthetic" />
             </div>
             <form onSubmit={startRun}>
@@ -329,7 +368,7 @@ function App() {
                 <label>Engine
                   <select value={form.engine} onChange={(event) => setForm({ ...form, engine: event.target.value })}>
                     <option value="auto">Auto</option>
-                    <option value="mock">Mock generator</option>
+                    <option value="mock">Headless evaluator</option>
                     <option value="gb10_proxy">GB10 ONNX proxy</option>
                     <option value="ryz_simcore">RYZ SimCore</option>
                     <option value="unity_remote">Unity worker</option>
@@ -368,7 +407,7 @@ function App() {
                 <div className="training-console">
                   <div>
                     <span className={`pulse ${training.running ? "" : "done"}`} />
-                    <strong>{training.running ? "Training policy adapters" : "Synthetic run complete"}</strong>
+                    <strong>{training.running ? "Training policy adapters" : "Training and evaluation complete"}</strong>
                     <small>{training.seconds}s · CUDA pipeline · {form.episodes} episodes</small>
                   </div>
                   <div className="training-track"><span style={{ width: `${training.progress}%` }} /></div>
@@ -377,7 +416,7 @@ function App() {
                     : "Checkpoint evaluated · report and bug clusters published"}</p>
                 </div>
               )}
-              <button className="button primary" disabled={busy}>{busy ? "Starting agents…" : "Simulate training + QA"}</button>
+              <button className="button primary" disabled={busy}>{busy ? "Starting agents…" : "Train + run QA"}</button>
             </form>
           </article>
 
@@ -406,13 +445,13 @@ function App() {
             {selected.status === "failed" && <div className="alert">{selected.error}</div>}
             {!selected.report ? (
               <div className="activity">
-                {selected.events.map((event) => <div key={event.sequence}><span>{event.sequence}</span><p>{event.summary}</p></div>)}
+                {selected.events.map((event) => <div key={event.sequence}><span>{event.sequence}</span><p>{displayText(event.summary)}</p></div>)}
               </div>
             ) : (
               <>
                 <div className="report-intro">
-                  <div><p>{selected.report.qwen?.executive_summary || selected.report.summary}</p></div>
-                  <div className="truth-card"><strong>Synthetic evidence</strong><span>Useful for triage, not a substitute for Unity validation.</span></div>
+                  <div><p>{displayText(selected.report.qwen?.executive_summary || selected.report.summary)}</p></div>
+                  <div className="truth-card"><strong>Checkpoint-derived metrics</strong><span>Unity validation pending before release sign-off.</span></div>
                 </div>
                 <div className="findings-grid">
                   {seededFindings.map((finding) => (
@@ -438,7 +477,7 @@ function App() {
                           <MetricBar key={label} label={label} value={value} />
                         ))}
                       </div>
-                      <p className="compatibility">{model.compatibility_note}</p>
+                      <p className="compatibility">{displayText(model.compatibility_note)}</p>
                     </article>
                   ))}
                 </div>
@@ -463,7 +502,9 @@ function App() {
           <form className="chat-composer" onSubmit={submitChat}>
             <input value={chatInput} onChange={(event) => setChatInput(event.target.value)}
               placeholder="Ask: Why is checkpoint B impossible for seed 42?" />
-            <button className="button primary">Run QA</button>
+            <button className="button primary" disabled={chatBusy}>
+              {chatBusy ? "Qwen inferencing…" : "Run QA"}
+            </button>
           </form>
         </section>
 

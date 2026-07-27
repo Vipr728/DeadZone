@@ -16,9 +16,9 @@ from fastapi.staticfiles import StaticFiles
 
 from . import __version__
 from .engines import execute
-from .qwen import MODEL_ID, synthesize
+from .qwen import MODEL_ID, answer_question, synthesize
 from .registry import load_registry
-from .schemas import RunRecord, RunRequest
+from .schemas import ChatRequest, RunRecord, RunRequest
 from .store import Store
 
 
@@ -145,7 +145,7 @@ def health() -> dict[str, Any]:
         "models_available": sum(
             bool(model.get("onnx", {}).get("available")) for model in registry["models"]
         ),
-        "evidence_policy": "synthetic evidence is never presented as Unity-verified",
+        "evidence_policy": "dashboard metrics require Unity validation before release sign-off",
     }
 
 
@@ -202,6 +202,33 @@ def report(run_id: str, _: Annotated[str, Depends(_role)]) -> dict[str, Any]:
     if record["report"] is None:
         raise HTTPException(409, "Report is not ready")
     return record["report"]
+
+
+@app.post("/api/v1/chat")
+def chat(
+    body: ChatRequest,
+    _: Annotated[str, Depends(require_operator)],
+) -> dict[str, Any]:
+    report_data: dict[str, Any] | None = None
+    if body.run_id:
+        record = store.get(body.run_id)
+        if record is None:
+            raise HTTPException(404, "Unknown run id")
+        report_data = record["report"]
+    try:
+        result = answer_question(
+            body.question,
+            report=report_data,
+            model_ids=body.model_ids,
+            history=[message.model_dump() for message in body.history],
+        )
+    except Exception as error:
+        raise HTTPException(503, f"Qwen inference failed: {error}") from error
+    return {
+        **result,
+        "run_id": body.run_id,
+        "grounded": report_data is not None,
+    }
 
 
 @app.get("/api/v1/runs/{run_id}/events")

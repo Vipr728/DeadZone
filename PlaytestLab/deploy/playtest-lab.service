@@ -1,5 +1,5 @@
 [Unit]
-Description=DeadZone AI Level QA localhost demo
+Description=DeadZone AI Level QA training dashboard
 After=network-online.target
 Wants=network-online.target
 

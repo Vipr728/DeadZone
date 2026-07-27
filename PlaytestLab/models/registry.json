@@ -13,7 +13,7 @@
       "domains": ["symbolic_puzzle", "platformer"],
       "status": "default",
       "evidence_tier": "headless",
-      "compatibility_note": "Not an ARK top-down control policy. Puzzle training used a symbolic graph simulator.",
+      "compatibility_note": "Not an ARK top-down control policy. Puzzle training used a symbolic graph environment.",
       "training_reward": null,
       "evaluation": {
         "frozen_overall_accuracy": 0.9408,

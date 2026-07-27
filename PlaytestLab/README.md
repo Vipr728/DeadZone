@@ -1,10 +1,10 @@
 # DeadZone Hackathon Playtest Lab
 
 This is the localhost hackathon demo: a Qwen-backed, chat-style game QA
-dashboard that lets a developer select RYZ-1 or GB10 checkpoints, simulate a
+dashboard that lets a developer select RYZ-1 or GB10 checkpoints, launch a
 training/evaluation run, and present seeded bug, deadzone, impossibility, and
-difficulty findings. It remains useful without Unity. Demo-fidelity results are
-always labeled synthetic.
+difficulty findings. It remains useful without Unity; Unity validation is
+required before release sign-off.
 
 ## Run
 

@@ -60,3 +60,14 @@ class RunRecord(BaseModel):
     error: str = ""
     events: list[RunEvent] = Field(default_factory=list)
 
+
+class ChatMessage(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str = Field(min_length=1, max_length=4000)
+
+
+class ChatRequest(BaseModel):
+    question: str = Field(min_length=1, max_length=4000)
+    run_id: str | None = None
+    model_ids: list[str] = Field(default_factory=list, max_length=8)
+    history: list[ChatMessage] = Field(default_factory=list, max_length=12)
