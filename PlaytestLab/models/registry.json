@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "release_tag": "playtest-models-v0.1.0",
+  "provenance": {
+    "results_report": "https://github.com/Vipr728/GB10-project/blob/agent/gb10-lr1e3-pilot-checkpoints/rl/models/CHECKPOINT_RESULTS_20260726.md",
+    "results_commit": "fb252044c53e934515a01c8285fe322f6532c4ee"
+  },
+  "models": [
+    {
+      "id": "ryz1-mixed-v1-20260726",
+      "display_name": "RYZ-1 Mixed Puzzle + Platform",
+      "family": "ryz1",
+      "domains": ["symbolic_puzzle", "platformer"],
+      "status": "default",
+      "evidence_tier": "headless",
+      "compatibility_note": "Not an ARK top-down control policy. Puzzle training used a symbolic graph simulator.",
+      "training_reward": null,
+      "evaluation": {
+        "frozen_overall_accuracy": 0.9408,
+        "frozen_puzzle_accuracy": 0.9440,
+        "frozen_platform_accuracy": 0.9332,
+        "platform_holdouts_solved": "6/6"
+      },
+      "checkpoint": {
+        "source": "${RYZ1_PROJECT_ROOT}/Library/RYZ1/models/puzzle-sweep/mixed-v1-20260726/best/checkpoint.pt",
+        "github_url": "https://github.com/connectwithlynk-create/Ryzi-labs/blob/agent/ryz1-puzzle-checkpoint-mixed-v1/RYZ-1/models/puzzle-sweep/mixed-v1-20260726/best/checkpoint.pt",
+        "sha256": "a271390a361c1b543728a718356b145293d26edc0deddea1915c0d7d1815ddfb"
+      },
+      "onnx": {
+        "source": "${RYZ1_PROJECT_ROOT}/Library/RYZ1/models/puzzle-sweep/mixed-v1-20260726/best/ryz1-mixed-puzzle-platform.onnx",
+        "github_url": "https://github.com/connectwithlynk-create/Ryzi-labs/blob/agent/ryz1-puzzle-checkpoint-mixed-v1/RYZ-1/models/puzzle-sweep/mixed-v1-20260726/best/ryz1-mixed-puzzle-platform.onnx",
+        "sha256": "4109d8868a2627c6f9a750312fdfbae15a1c112f8a47f0d2c25bd144637403da"
+      }
+    },
+    {
+      "id": "ryz1-sequence-v3",
+      "display_name": "RYZ-1 Curriculum Sequence v3",
+      "family": "ryz1",
+      "domains": ["platformer"],
+      "status": "legacy",
+      "evidence_tier": "unity_verified",
+      "compatibility_note": "Validated through the Unity platform bridge; deterministic search remains the completion authority.",
+      "training_reward": null,
+      "evaluation": {
+        "teacher_action_accuracy": 0.9086,
+        "simcore_holdouts_solved": "6/6",
+        "unity_demo_ticks": 51,
+        "unity_unseen_ticks": 57
+      },
+      "checkpoint": {
+        "source": "${RYZ1_PROJECT_ROOT}/models/curriculum-sequence-v3/checkpoint.pt",
+        "github_url": "https://github.com/connectwithlynk-create/Ryzi-labs/blob/main/RYZ-1/models/curriculum-sequence-v3/checkpoint.pt",
+        "sha256": "e234b70f610612ddc5452feb03adace77a953d879d8d400de3b51988f04f7724"
+      },
+      "onnx": {
+        "source": "${RYZ1_PROJECT_ROOT}/Library/RYZ1/models/curriculum-sequence-v3/ryz1-sequence.onnx",
+        "sha256": "ead653759fa0e6402010cd7fe92bbbcf2231a0e63698c8e37c7366139fa568bd"
+      }
+    },
+    {
+      "id": "gb10-ppo-seed42-step14978",
+      "display_name": "GB10 PPO Seed 42 Peak",
+      "family": "gb10_ppo",
+      "domains": ["platformer"],
+      "status": "provisional_default",
+      "evidence_tier": "synthetic",
+      "compatibility_note": "Training-reward champion pending fair Level A validation. Not compatible with ARK top-down gameplay.",
+      "training_reward": 7.998365879,
+      "evaluation": {
+        "converged_by_step": 8192,
+        "tail_median_reward": 7.989,
+        "tail_mean_reward": 6.527,
+        "heldout_unity_evaluation": false
+      },
+      "checkpoint": {
+        "source": "${GB10_PROJECT_ROOT}/rl/checkpoints/remote-results/pilot_lr1e3_seed42_20k_20260726/PlaytestAgent/PlaytestAgent-14978.pt",
+        "github_url": "https://github.com/Vipr728/GB10-project/blob/agent/gb10-lr1e3-pilot-checkpoints/rl/models/lr1e3-pilots-20k-20260726/seed-42/best-step-14978.pt",
+        "sha256": "6e229c20b4e011cf9cdf9cbd77b77908168191349ccb556b9106e0e817105c79"
+      },
+      "onnx": {
+        "source": "${GB10_PROJECT_ROOT}/rl/checkpoints/remote-results/pilot_lr1e3_seed42_20k_20260726/PlaytestAgent/PlaytestAgent-14978.onnx",
+        "github_url": "https://github.com/Vipr728/GB10-project/blob/agent/gb10-lr1e3-pilot-checkpoints/rl/models/lr1e3-pilots-20k-20260726/seed-42/best-step-14978.onnx",
+        "sha256": "3f023aa7fa91c56adf309906a551a2df5d84e797ce18ead73bff07d0684c5871"
+      }
+    },
+    {
+      "id": "gb10-ppo-seed43-step14977",
+      "display_name": "GB10 PPO Seed 43 Peak",
+      "family": "gb10_ppo",
+      "domains": ["platformer"],
+      "status": "candidate",
+      "evidence_tier": "synthetic",
+      "compatibility_note": "Proxy-only on GB10 until Unity Level A validation.",
+      "training_reward": 7.522469,
+      "evaluation": {
+        "converged_by_step": 6144,
+        "tail_median_reward": 6.717,
+        "tail_mean_reward": 6.399,
+        "heldout_unity_evaluation": false
+      },
+      "checkpoint": {
+        "source": "${GB10_PROJECT_ROOT}/rl/checkpoints/remote-results/pilot_lr1e3_seed43_20k_20260726/PlaytestAgent/PlaytestAgent-14977.pt",
+        "github_url": "https://github.com/Vipr728/GB10-project/blob/agent/gb10-lr1e3-pilot-checkpoints/rl/models/lr1e3-pilots-20k-20260726/seed-43/best-step-14977.pt",
+        "sha256": "dbb5607004c466f34393c8a4388ec2deb3319067ef070a82030ef9a3dd6eee40"
+      },
+      "onnx": {
+        "source": "${GB10_PROJECT_ROOT}/rl/checkpoints/remote-results/pilot_lr1e3_seed43_20k_20260726/PlaytestAgent/PlaytestAgent-14977.onnx",
+        "github_url": "https://github.com/Vipr728/GB10-project/blob/agent/gb10-lr1e3-pilot-checkpoints/rl/models/lr1e3-pilots-20k-20260726/seed-43/best-step-14977.onnx",
+        "sha256": "ae687d269be75d663a02d6b636d15ae109b7a6d388b8de6c7a66e16ab5c68709"
+      }
+    },
+    {
+      "id": "gb10-ppo-seed44-step14995",
+      "display_name": "GB10 PPO Seed 44 Peak",
+      "family": "gb10_ppo",
+      "domains": ["platformer"],
+      "status": "candidate",
+      "evidence_tier": "synthetic",
+      "compatibility_note": "Proxy-only on GB10 until Unity Level A validation.",
+      "training_reward": 4.854866,
+      "evaluation": {
+        "converged_by_step": 5632,
+        "tail_median_reward": 7.723,
+        "tail_mean_reward": 6.296,
+        "heldout_unity_evaluation": false
+      },
+      "checkpoint": {
+        "source": "${GB10_PROJECT_ROOT}/rl/checkpoints/remote-results/pilot_lr1e3_seed44_20k_20260726/PlaytestAgent/PlaytestAgent-14995.pt",
+        "github_url": "https://github.com/Vipr728/GB10-project/blob/agent/gb10-lr1e3-pilot-checkpoints/rl/models/lr1e3-pilots-20k-20260726/seed-44/best-step-14995.pt",
+        "sha256": "3309f8b56c0a1320fdc49a9caa1b3dd92aa28f6692c513184ff6760d2a2c6807"
+      },
+      "onnx": {
+        "source": "${GB10_PROJECT_ROOT}/rl/checkpoints/remote-results/pilot_lr1e3_seed44_20k_20260726/PlaytestAgent/PlaytestAgent-14995.onnx",
+        "github_url": "https://github.com/Vipr728/GB10-project/blob/agent/gb10-lr1e3-pilot-checkpoints/rl/models/lr1e3-pilots-20k-20260726/seed-44/best-step-14995.onnx",
+        "sha256": "c3c1983418b683f7b07675cdf06608b17ac09bf3f887b516dcc3cd711753357e"
+      }
+    }
+  ],
+  "datasets": [
+    {
+      "id": "ryz1-real-puzzle-probe-v3",
+      "status": "experimental_dataset_only",
+      "evidence_tier": "headless",
+      "source": "${RYZ1_PROJECT_ROOT}/Library/RYZ1/runs/real-puzzle-probe-v3/native/dataset.json",
+      "warning": "No checkpoint was trained on this physical-puzzle dataset; Unity parity is incomplete."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+[Unit]
+Description=RYZ Playtest Lab localhost service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/DeadZone/PlaytestLab
+ExecStart=%h/DeadZone/PlaytestLab/.venv/bin/playtest-lab
+Environment=PLAYTEST_LAB_HOST=127.0.0.1
+Environment=PLAYTEST_LAB_PORT=8788
+Environment=PLAYTEST_LAB_QWEN_MODE=nemoclaw
+Environment=PLAYTEST_LAB_DATA_DIR=%h/.local/state/ryz-playtest-lab
+Environment=GB10_PROJECT_ROOT=%h/gb10-project
+Environment=RYZ1_PROJECT_ROOT=%h/Ryzi-labs/RYZ-1
+EnvironmentFile=-%h/.config/ryz-playtest-lab/env
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target
