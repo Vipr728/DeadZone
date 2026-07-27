@@ -1,0 +1,81 @@
+{
+  "run_id": "22222222-2222-4222-8222-222222222222",
+  "level_id": "level_b",
+  "stage": "stage2",
+  "checkpoint_path": "rl/checkpoints/stage2/level_b.ckpt",
+  "timestamp_start": "2026-07-25T20:05:00Z",
+  "episode_summaries": [
+    {
+      "episode_index": 0,
+      "outcome": "death",
+      "total_reward": -8.0,
+      "time_to_clear_seconds": null,
+      "path_trace": [{"t": 0.0, "x": 0.0, "y": 1.0}, {"t": 7.1, "x": 13.9, "y": -0.5}],
+      "piece_results": [
+        {
+          "piece_id": "b_planted_gap",
+          "piece_type": "gap_jump",
+          "params": {"width": 3.8, "height": 0.0},
+          "attempts": 4,
+          "time_to_clear_seconds": null,
+          "death_position": {"x": 13.9, "y": -0.5},
+          "seen_in_stage1_range": true
+        }
+      ]
+    },
+    {
+      "episode_index": 1,
+      "outcome": "death",
+      "total_reward": -7.5,
+      "time_to_clear_seconds": null,
+      "path_trace": [{"t": 0.0, "x": 0.0, "y": 1.0}, {"t": 6.8, "x": 14.1, "y": -0.4}],
+      "piece_results": [
+        {
+          "piece_id": "b_planted_gap",
+          "piece_type": "gap_jump",
+          "params": {"width": 3.8, "height": 0.0},
+          "attempts": 5,
+          "time_to_clear_seconds": null,
+          "death_position": {"x": 14.1, "y": -0.4},
+          "seen_in_stage1_range": true
+        }
+      ]
+    },
+    {
+      "episode_index": 2,
+      "outcome": "death",
+      "total_reward": -8.2,
+      "time_to_clear_seconds": null,
+      "path_trace": [{"t": 0.0, "x": 0.0, "y": 1.0}, {"t": 7.0, "x": 14.0, "y": -0.6}],
+      "piece_results": [
+        {
+          "piece_id": "b_planted_gap",
+          "piece_type": "gap_jump",
+          "params": {"width": 3.8, "height": 0.0},
+          "attempts": 5,
+          "time_to_clear_seconds": null,
+          "death_position": {"x": 14.0, "y": -0.6},
+          "seen_in_stage1_range": true
+        }
+      ]
+    },
+    {
+      "episode_index": 3,
+      "outcome": "success",
+      "total_reward": 11.0,
+      "time_to_clear_seconds": 29.0,
+      "path_trace": [{"t": 0.0, "x": 0.0, "y": 1.0}, {"t": 15.0, "x": 14.0, "y": 1.2}, {"t": 29.0, "x": 22.0, "y": 1.0}],
+      "piece_results": [
+        {
+          "piece_id": "b_planted_gap",
+          "piece_type": "gap_jump",
+          "params": {"width": 3.8, "height": 0.0},
+          "attempts": 6,
+          "time_to_clear_seconds": 15.0,
+          "death_position": null,
+          "seen_in_stage1_range": true
+        }
+      ]
+    }
+  ]
+}

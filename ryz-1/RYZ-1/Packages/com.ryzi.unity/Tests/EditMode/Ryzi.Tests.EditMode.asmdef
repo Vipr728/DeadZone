@@ -1,0 +1,25 @@
+{
+  "name": "Ryzi.Tests.EditMode",
+  "rootNamespace": "Ryzi.Tests.EditMode",
+  "references": [
+    "Ryzi.Runtime",
+    "Ryzi.Editor",
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [
+    "nunit.framework.dll"
+  ],
+  "autoReferenced": true,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

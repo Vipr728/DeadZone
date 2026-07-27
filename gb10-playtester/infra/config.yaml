@@ -1,0 +1,60 @@
+paths:
+  watched_levels_dir: "../unity/PlaytesterProject/Exports"
+  builds_dir: "../unity/PlaytesterProject/Builds"
+  telemetry_dir: "../unity/PlaytesterProject/Telemetry"
+  reports_dir: "../unity/PlaytesterProject/Reports"
+  checkpoint_manifest: "../rl/checkpoint_manifest.json"
+
+llm:
+  backend: "ollama"
+  model: "deepseek-r1:8b"
+  gb10_model: "llama3.3:70b"
+  use_gb10_model: false
+  ollama_base_url: "http://127.0.0.1:11434"
+  nim_base_url: "http://127.0.0.1:8000"
+  nemoclaw_base_url: "http://127.0.0.1:8080"
+  timeout_seconds: 120
+
+reporting:
+  death_cluster_min_episodes: 2
+  high_attempt_threshold: 4
+  failure_rate_too_hard: 0.5
+
+orchestration:
+  execution_mode: "remote"
+  fine_tune_script: "../rl/scripts/finetune_stage2.sh"
+  stage1_checkpoint: "../rl/checkpoints/stage1/generalizer.ckpt"
+  checkpoint_out_dir: "../rl/checkpoints/stage2"
+  num_envs: 1
+  playtest_command:
+    - "../rl/scripts/run_playtest.sh"
+    - "--level-id"
+    - "{level_id}"
+    - "--checkpoint-in"
+    - "{checkpoint_out}"
+    - "--episodes"
+    - "{playtest_episodes}"
+    - "--telemetry-out"
+    - "{telemetry_dir}/{level_id}_{export_fingerprint}.json"
+    - "--execution-mode"
+    - "{execution_mode}"
+  watch_poll_seconds: 1.0
+
+sandbox:
+  backend: "application"
+  allowed_read_paths:
+    - "../unity/PlaytesterProject/Exports"
+    - "../unity/PlaytesterProject/Builds"
+    - "../unity/PlaytesterProject/Telemetry"
+    - "../contracts"
+    - "../rl/checkpoint_manifest.json"
+    - "../rl/checkpoints"
+    - "../rl/scripts"
+  allowed_write_paths:
+    - "../unity/PlaytesterProject/Reports"
+    - "../unity/PlaytesterProject/Telemetry"
+    - "../rl/checkpoints"
+    - "../rl/checkpoint_manifest.json"
+  egress_policy: "block_all"
+  llm_allowlist:
+    - "127.0.0.1:11434"

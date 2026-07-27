@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ryz-data"
+version = "0.1.0"
+description = "Deterministic local data generation for RYZ-1"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "pyarrow>=16", "PyYAML>=6", "torch>=2.4"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.setuptools.packages.find]
+include = ["ryz_data*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"

@@ -1,0 +1,12 @@
+# Unity-generated, machine-local state.
+PlaytesterProject/[Ll]ibrary/
+PlaytesterProject/[Tt]emp/
+PlaytesterProject/[Oo]bj/
+PlaytesterProject/[Ll]ogs/
+PlaytesterProject/[Uu]serSettings/
+PlaytesterProject/.vs/
+PlaytesterProject/*.csproj
+PlaytesterProject/*.sln
+
+# Training builds follow the locked PRD path but are generated artifacts.
+PlaytesterProject/Builds/

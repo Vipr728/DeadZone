@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+results/
+checkpoints/
+*.onnx
+*.lock
+!uv.lock
+manifest.json
+.venv-mlagents/

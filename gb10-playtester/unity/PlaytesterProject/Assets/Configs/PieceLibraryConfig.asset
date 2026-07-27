@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c16a092e5304e6b932a3e1e2214f647, type: 3}
+  m_Name: PieceLibraryConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Playtester.Gym.PieceLibraryConfig
+  <GapJumpPrefab>k__BackingField: {fileID: 3045502803722592204, guid: 49c70c26f2bca4b5eb5f1471c59dc4d4, type: 3}
+  <MoveToGoalPrefab>k__BackingField: {fileID: 7387795889895559312, guid: 69e52a78cf3bc4ede92b9195f6a7be2f, type: 3}
+  <ElevationPrefab>k__BackingField: {fileID: 7172568364453873560, guid: 91315f56a493a4742b29a386cac8b533, type: 3}
+  <EnableElevationPiece>k__BackingField: 0
+  <PiecesPerEpisode>k__BackingField: 3
+  <BoundaryVelocityReset>k__BackingField: 1
+  <GapWidthRange>k__BackingField: {x: 2, y: 5}
+  <MoveDistanceRange>k__BackingField: {x: 4, y: 10}
+  <ElevationHeightRange>k__BackingField: {x: 1, y: 3}

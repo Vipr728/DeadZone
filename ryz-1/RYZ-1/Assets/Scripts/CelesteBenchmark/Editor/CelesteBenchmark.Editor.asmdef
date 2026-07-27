@@ -1,0 +1,20 @@
+{
+    "name": "CelesteBenchmark.Editor",
+    "rootNamespace": "CelesteBenchmark.Editor",
+    "references": [
+        "CelesteBenchmark",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.RenderPipelines.Universal.2D.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eaf9033cb2a4eb89a9c68900dd0e548, type: 3}
+  m_Name: RewardConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Playtester.Agent.RewardConfigAsset
+  <ActiveStrategy>k__BackingField: compositional
+  <ProgressRewardScale>k__BackingField: 0.01
+  <TimePenalty>k__BackingField: -0.001
+  <PieceCompletionBonus>k__BackingField: 1
+  <FinalSequenceBonus>k__BackingField: 5
+  <DeathPenalty>k__BackingField: -1
+  <MaxSteps>k__BackingField: 1000

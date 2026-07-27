@@ -1,0 +1,23 @@
+{
+    "name": "PlatformerPlaytest.Tests.PlayMode",
+    "rootNamespace": "PlatformerPlaytest.Tests.PlayMode",
+    "references": [
+        "PlatformerPlaytest.Runtime",
+        "CelesteBenchmark",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

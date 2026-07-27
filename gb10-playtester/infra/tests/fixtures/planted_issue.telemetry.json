@@ -1,0 +1,51 @@
+{
+  "run_id": "b8fe2b3d-cac3-496c-b8e2-a68221d18d94",
+  "level_id": "level_b",
+  "stage": "stage2",
+  "checkpoint_path": "rl/checkpoints/level_b/stage2.pt",
+  "timestamp_start": "2026-07-25T08:00:00Z",
+  "episode_summaries": [
+    {
+      "episode_index": 0,
+      "outcome": "death",
+      "total_reward": -0.74,
+      "time_to_clear_seconds": null,
+      "path_trace": [
+        {"t": 0.0, "x": 0.0, "y": 0.0},
+        {"t": 4.2, "x": 18.1, "y": -0.3}
+      ],
+      "piece_results": [
+        {
+          "piece_id": "gap_extreme_01",
+          "piece_type": "gap_jump",
+          "params": {"width": 5.0, "height": null},
+          "attempts": 4,
+          "time_to_clear_seconds": null,
+          "death_position": {"x": 18.1, "y": -0.3},
+          "seen_in_stage1_range": true
+        }
+      ]
+    },
+    {
+      "episode_index": 1,
+      "outcome": "death",
+      "total_reward": -0.69,
+      "time_to_clear_seconds": null,
+      "path_trace": [
+        {"t": 0.0, "x": 0.0, "y": 0.0},
+        {"t": 3.9, "x": 18.0, "y": -0.4}
+      ],
+      "piece_results": [
+        {
+          "piece_id": "gap_extreme_01",
+          "piece_type": "gap_jump",
+          "params": {"width": 5.0, "height": null},
+          "attempts": 5,
+          "time_to_clear_seconds": null,
+          "death_position": {"x": 18.0, "y": -0.4},
+          "seen_in_stage1_range": true
+        }
+      ]
+    }
+  ]
+}

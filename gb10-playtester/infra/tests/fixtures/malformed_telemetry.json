@@ -1,0 +1,6 @@
+{
+  "run_id": "not-a-uuid",
+  "level_id": "level_bad",
+  "stage": "production",
+  "episode_summaries": "not-an-array"
+}

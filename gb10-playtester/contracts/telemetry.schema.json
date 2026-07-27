@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gb10-project/contracts/telemetry.schema.json",
+  "title": "PlaytestTelemetry",
+  "description": "One playtest run's telemetry document. Written by the Unity-side TelemetryRecorder (see prd-unity.md §6) or by rl/src/playtester_rl/telemetry_writer.py for RL-side analysis/fixtures. Consumed by infra/src/playtester_infra/report_pipeline.py. See PRD.md §3.1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "level_id", "stage", "checkpoint_path", "timestamp_start", "episode_summaries"],
+  "properties": {
+    "run_id": { "type": "string", "format": "uuid" },
+    "level_id": { "type": "string", "minLength": 1 },
+    "stage": { "type": "string", "enum": ["stage1", "stage2"] },
+    "checkpoint_path": { "type": "string" },
+    "timestamp_start": { "type": "string", "format": "date-time" },
+    "episode_summaries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/episode_summary" }
+    }
+  },
+  "$defs": {
+    "episode_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["episode_index", "outcome", "total_reward", "time_to_clear_seconds", "path_trace", "piece_results"],
+      "properties": {
+        "episode_index": { "type": "integer", "minimum": 0 },
+        "outcome": { "type": "string", "enum": ["success", "death", "timeout"] },
+        "total_reward": { "type": "number" },
+        "time_to_clear_seconds": { "type": ["number", "null"], "minimum": 0 },
+        "path_trace": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/path_point" }
+        },
+        "piece_results": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/piece_result" }
+        }
+      }
+    },
+    "path_point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["t", "x", "y"],
+      "properties": {
+        "t": { "type": "number", "minimum": 0 },
+        "x": { "type": "number" },
+        "y": { "type": "number" }
+      }
+    },
+    "piece_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["piece_id", "piece_type", "params", "attempts", "time_to_clear_seconds", "death_position", "seen_in_stage1_range"],
+      "properties": {
+        "piece_id": { "type": "string", "minLength": 1 },
+        "piece_type": { "type": "string", "enum": ["gap_jump", "move_to_goal", "elevation"] },
+        "params": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "width": { "type": ["number", "null"] },
+            "height": { "type": ["number", "null"] }
+          }
+        },
+        "attempts": { "type": "integer", "minimum": 0 },
+        "time_to_clear_seconds": { "type": ["number", "null"], "minimum": 0 },
+        "death_position": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["x", "y"],
+              "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
+            }
+          ]
+        },
+        "seen_in_stage1_range": { "type": "boolean" }
+      }
+    }
+  }
+}

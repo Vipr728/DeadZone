@@ -1,0 +1,16 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ryz1.Contracts", "src\Ryz1.Contracts\Ryz1.Contracts.csproj", "{68BC525A-7A13-45F4-B99B-474099866B28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ryz1.SimCore", "src\Ryz1.SimCore\Ryz1.SimCore.csproj", "{19F9F7F3-7907-4307-9CE8-7B4C3F082734}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ryz1.Runner", "src\Ryz1.Runner\Ryz1.Runner.csproj", "{E51364F4-10B5-47DD-A9FC-F66A21F42156}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ryz1.ScanCli", "src\Ryz1.ScanCli\Ryz1.ScanCli.csproj", "{6186A4C8-037A-4910-B21B-2E9894D4F730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ryz1.SimCore.Tests", "tests\Ryz1.SimCore.Tests\Ryz1.SimCore.Tests.csproj", "{F13F2F8C-8D07-4FE4-92F5-866B07E5C192}"
+EndProject
+Global
+EndGlobal

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gb10-project/contracts/report.schema.json",
+  "title": "PlaytestReport",
+  "description": "Structured output target for the local-LLM report generation pipeline (infra/src/playtester_infra/report_pipeline.py). See PRD.md §3.3.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["level_id", "overall_difficulty", "difficulty_rationale", "problem_points", "teachability_assessment", "planted_issue_detected"],
+  "properties": {
+    "level_id": { "type": "string", "minLength": 1 },
+    "overall_difficulty": { "type": "string", "enum": ["too_easy", "appropriate", "too_hard"] },
+    "difficulty_rationale": { "type": "string", "minLength": 1 },
+    "problem_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["location", "issue", "severity", "evidence"],
+        "properties": {
+          "location": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["piece_id", "x", "y"],
+            "properties": {
+              "piece_id": { "type": "string" },
+              "x": { "type": "number" },
+              "y": { "type": "number" }
+            }
+          },
+          "issue": { "type": "string", "minLength": 1 },
+          "severity": { "type": "string", "enum": ["low", "medium", "high"] },
+          "evidence": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "teachability_assessment": { "type": "string", "minLength": 1 },
+    "planted_issue_detected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["detected", "description"],
+      "properties": {
+        "detected": { "type": "boolean" },
+        "description": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

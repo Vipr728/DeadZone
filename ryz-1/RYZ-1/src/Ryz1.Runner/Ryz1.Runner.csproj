@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Ryz1.Runner</AssemblyName>
+    <RootNamespace>Ryz1.Runner</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Ryz1.Contracts/Ryz1.Contracts.csproj" />
+    <ProjectReference Include="../Ryz1.SimCore/Ryz1.SimCore.csproj" />
+    <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.27.1" />
+  </ItemGroup>
+</Project>

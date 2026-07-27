@@ -1,0 +1,19 @@
+{
+    "name": "PlatformerPlaytest.Editor",
+    "rootNamespace": "PlatformerPlaytest.Editor",
+    "references": [
+        "PlatformerPlaytest.Runtime",
+        "CelesteBenchmark"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

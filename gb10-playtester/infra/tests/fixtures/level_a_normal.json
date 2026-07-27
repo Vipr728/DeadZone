@@ -1,0 +1,89 @@
+{
+  "run_id": "11111111-1111-4111-8111-111111111111",
+  "level_id": "level_a",
+  "stage": "stage2",
+  "checkpoint_path": "rl/checkpoints/stage2/level_a.ckpt",
+  "timestamp_start": "2026-07-25T20:00:00Z",
+  "episode_summaries": [
+    {
+      "episode_index": 0,
+      "outcome": "success",
+      "total_reward": 24.5,
+      "time_to_clear_seconds": 12.4,
+      "path_trace": [
+        {"t": 0.0, "x": 0.0, "y": 1.0},
+        {"t": 6.0, "x": 8.0, "y": 1.0},
+        {"t": 12.4, "x": 17.0, "y": 1.0}
+      ],
+      "piece_results": [
+        {
+          "piece_id": "a_move_1",
+          "piece_type": "move_to_goal",
+          "params": {"width": 6.0, "height": null},
+          "attempts": 1,
+          "time_to_clear_seconds": 4.0,
+          "death_position": null,
+          "seen_in_stage1_range": true
+        },
+        {
+          "piece_id": "a_gap_1",
+          "piece_type": "gap_jump",
+          "params": {"width": 2.5, "height": 0.0},
+          "attempts": 1,
+          "time_to_clear_seconds": 4.2,
+          "death_position": null,
+          "seen_in_stage1_range": true
+        },
+        {
+          "piece_id": "a_move_2",
+          "piece_type": "move_to_goal",
+          "params": {"width": 5.5, "height": null},
+          "attempts": 1,
+          "time_to_clear_seconds": 4.2,
+          "death_position": null,
+          "seen_in_stage1_range": true
+        }
+      ]
+    },
+    {
+      "episode_index": 1,
+      "outcome": "success",
+      "total_reward": 25.2,
+      "time_to_clear_seconds": 11.8,
+      "path_trace": [
+        {"t": 0.0, "x": 0.0, "y": 1.0},
+        {"t": 5.5, "x": 8.0, "y": 1.2},
+        {"t": 11.8, "x": 17.0, "y": 1.0}
+      ],
+      "piece_results": [
+        {
+          "piece_id": "a_move_1",
+          "piece_type": "move_to_goal",
+          "params": {"width": 6.0, "height": null},
+          "attempts": 1,
+          "time_to_clear_seconds": 3.8,
+          "death_position": null,
+          "seen_in_stage1_range": true
+        },
+        {
+          "piece_id": "a_gap_1",
+          "piece_type": "gap_jump",
+          "params": {"width": 2.5, "height": 0.0},
+          "attempts": 1,
+          "time_to_clear_seconds": 4.0,
+          "death_position": null,
+          "seen_in_stage1_range": true
+        },
+        {
+          "piece_id": "a_move_2",
+          "piece_type": "move_to_goal",
+          "params": {"width": 5.5, "height": null},
+          "attempts": 1,
+          "time_to_clear_seconds": 4.0,
+          "death_position": null,
+          "seen_in_stage1_range": true
+        }
+      ]
+    }
+  ]
+}

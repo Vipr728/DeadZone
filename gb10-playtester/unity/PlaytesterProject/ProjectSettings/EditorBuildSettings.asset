@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GymScene.unity
+    guid: 4f84154b08c34cf3904d8c0d82aa1101
+  - enabled: 1
+    path: Assets/Scenes/LevelA.unity
+    guid: d4ef34760d7a4ab4aa1de19507b12345
+  - enabled: 1
+    path: Assets/Scenes/LevelB.unity
+    guid: 527d3b3cb0e943aa8f6d9987bca1b102
+  m_configObjects:
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
+  m_UseUCBPForAssetBundles: 0

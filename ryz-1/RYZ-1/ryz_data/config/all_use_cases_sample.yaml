@@ -1,0 +1,12 @@
+# One task from every scenario contract in scenario_catalog.py (89 total).
+dataset:
+  target_tasks: 89
+  trials_per_task: {min: 4, max: 4}
+  target_transitions: 250000
+  shard_size: 5000
+  stopping_policy: tasks
+generation: {workers: 1, global_seed: 0}
+solver:
+  high_budget: {beam_width: 8, max_depth: 20}
+  low_budget: {beam_width: 3, max_depth: 8}
+sources: {calibration: true, high_budget_solver: true, low_budget_solver: true, perturbations: true, random_exploration: true, policy_rollouts: false}

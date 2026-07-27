@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gb10-project/contracts/checkpoint_manifest.schema.json",
+  "title": "CheckpointManifest",
+  "description": "Per-level record of checkpoints and training metrics for Stage 1, Stage 2, and the cold-start baseline. Written incrementally by rl/scripts/*.sh (see prd-ml.md §5), read by gate_eval.gate2_check and the Unity Editor tool's checkpoint dropdown (prd-unity.md §4). One JSON document contains a top-level array of these entries, one per level_id.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["level_id", "stage1_checkpoint", "stage2_checkpoint", "onnx_export_path", "stage1_metrics", "stage2_metrics", "coldstart_baseline_metrics"],
+  "properties": {
+    "level_id": { "type": "string", "minLength": 1 },
+    "stage1_checkpoint": { "type": ["string", "null"] },
+    "stage2_checkpoint": { "type": ["string", "null"] },
+    "onnx_export_path": { "type": ["string", "null"] },
+    "stage1_metrics": { "$ref": "#/$defs/run_metrics" },
+    "stage2_metrics": { "$ref": "#/$defs/run_metrics_with_convergence" },
+    "coldstart_baseline_metrics": { "$ref": "#/$defs/run_metrics_with_convergence" }
+  },
+  "$defs": {
+    "run_metrics": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["final_mean_reward", "training_steps"],
+          "properties": {
+            "final_mean_reward": { "type": "number" },
+            "training_steps": { "type": "integer", "minimum": 0 }
+          }
+        }
+      ]
+    },
+    "run_metrics_with_convergence": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["final_mean_reward", "training_steps", "steps_to_converge"],
+          "properties": {
+            "final_mean_reward": { "type": "number" },
+            "training_steps": { "type": "integer", "minimum": 0 },
+            "steps_to_converge": { "type": ["integer", "null"], "minimum": 0 }
+          }
+        }
+      ]
+    }
+  }
+}

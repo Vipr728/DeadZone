@@ -1,0 +1,14 @@
+{
+  "seed": 101,
+  "batch_size": 256,
+  "sequence_length": 16,
+  "hidden_size": 256,
+  "learning_rate": 0.0003,
+  "steps": 1500,
+  "checkpoint_interval": 250,
+  "eval_interval": 250,
+  "num_workers": 2,
+  "mixed_precision": "auto",
+  "class_balance": "sqrt",
+  "device": "auto"
+}

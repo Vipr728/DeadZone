@@ -1,0 +1,15 @@
+# Observation encoding config — prd-ml.md §1. Mirrored by the C# IObservationEncoder
+# (GridObservationEncoder.cs, prd-unity.md §3). Changing grid_size or added fields
+# means a new encoder implementation, never scattered edits (PRD.md §1 modularity rule).
+
+# TUNABLE — NxN tile window centered on player, odd so player is exact center. 7x7
+# chosen as a starting size: large enough to see an incoming gap/hazard at typical
+# approach speed, small enough to keep the observation vector modest.
+grid_size: 7
+
+# LOCKED shape — one-hot channel per cell category. Not tunable without touching the
+# encoder implementation on both sides.
+tile_channels: [empty, solid, hazard, goal]
+
+include_velocity: true
+include_grounded_flag: true

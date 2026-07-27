@@ -1,0 +1,27 @@
+{
+  "run_id": "33333333-3333-4333-8333-333333333333",
+  "level_id": "level_out_of_range",
+  "stage": "stage2",
+  "checkpoint_path": "rl/checkpoints/stage2/level_out_of_range.ckpt",
+  "timestamp_start": "2026-07-25T20:10:00Z",
+  "episode_summaries": [
+    {
+      "episode_index": 0,
+      "outcome": "death",
+      "total_reward": -10.0,
+      "time_to_clear_seconds": null,
+      "path_trace": [{"t": 0.0, "x": 0.0, "y": 1.0}, {"t": 4.0, "x": 6.0, "y": -1.0}],
+      "piece_results": [
+        {
+          "piece_id": "unknown_gap",
+          "piece_type": "gap_jump",
+          "params": {"width": 9.0, "height": 0.0},
+          "attempts": 3,
+          "time_to_clear_seconds": null,
+          "death_position": {"x": 6.0, "y": -1.0},
+          "seen_in_stage1_range": false
+        }
+      ]
+    }
+  ]
+}

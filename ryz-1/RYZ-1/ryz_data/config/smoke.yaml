@@ -1,0 +1,11 @@
+dataset:
+  target_tasks: 200
+  trials_per_task: {min: 2, max: 4}
+  target_transitions: 100000
+  shard_size: 25000
+  stopping_policy: either
+generation: {workers: 4, global_seed: 1337}
+solver:
+  high_budget: {beam_width: 64, max_depth: 150}
+  low_budget: {beam_width: 8, max_depth: 50}
+sources: {calibration: true, high_budget_solver: true, low_budget_solver: true, perturbations: true, random_exploration: true, policy_rollouts: false}

@@ -1,0 +1,35 @@
+# OS and editor state
+.DS_Store
+/.idea/
+/.vscode/
+
+# Python environments, caches, and test output
+**/.venv/
+**/.venv-mlagents/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+**/*.pyc
+
+# Unity-generated state and build output
+**/Library/
+**/Logs/
+**/Temp/
+**/Obj/
+**/Build/
+**/Builds/
+**/Exports/
+
+# GB10 runtime output (not Unity source folders named Telemetry or Reports)
+gb10-playtester/unity/PlaytesterProject/Telemetry/
+gb10-playtester/unity/PlaytesterProject/Reports/
+
+# Generated model and runtime artifacts
+**/artifacts/
+**/checkpoints/
+**/runs/
+**/*.onnx
+**/*.tfevents.*
+
+# Unity IDE project files are regenerated locally.
+**/*.slnx

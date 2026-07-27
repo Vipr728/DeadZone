@@ -1,0 +1,12 @@
+# Mac Unity <-> GB10 policy transport. Override either identity with
+# PLAYTESTER_GB10_HOST / PLAYTESTER_GB10_USER; never put an IP address here.
+tailscale_hostname: "promaxgb10-8525.taila4d506.ts.net"
+ssh_username: ""
+repository_path: "GB10-project"
+results_dir: "rl/checkpoints/remote-results"
+training_config_path: "rl/configs/training_config.yaml"
+trainer_executable: "rl/.venv-mlagents/bin/mlagents-learn"
+base_port: 5004
+connect_timeout_seconds: 10
+command_timeout_seconds: 900
+require_direct_tailscale: true

@@ -1,0 +1,21 @@
+{
+  "name": "Ryzi.Integrations.ExistingSimulator",
+  "rootNamespace": "Ryzi.Integrations.ExistingSimulator",
+  "references": [
+    "Ryzi.Runtime",
+    "Ryzi.Editor",
+    "PlatformerPlaytest.Runtime",
+    "CelesteBenchmark"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
